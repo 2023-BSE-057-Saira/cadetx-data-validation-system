@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "n_rows": 515,
+    "n_columns": 9,
+    "columns": [
+      {
+        "column": "InvoiceNo",
+        "pandas_dtype": "int64",
+        "semantic_type": "id",
+        "is_mixed_type": false,
+        "null_count": 0,
+        "null_percent": 0.0,
+        "unique_count": 487,
+        "sample_values": [
+          "530892",
+          "537738",
+          "536545",
+          "534388",
+          "534329"
+        ]
+      },
+      {
+        "column": "StockCode",
+        "pandas_dtype": "int64",
+        "semantic_type": "id",
+        "is_mixed_type": false,
+        "null_count": 0,
+        "null_percent": 0.0,
+        "unique_count": 496,
+        "sample_values": [
+          "20235",
+          "68673",
+          "96634",
+          "88073",
+          "34666"
+        ]
+      },
+      {
+        "column": "Description",
+        "pandas_dtype": "str",
+        "semantic_type": "categorical",
+        "is_mixed_type": false,
+        "null_count": 124,
+        "null_percent": 24.08,
+        "unique_count": 6,
+        "sample_values": [
+          "assorted colour bird ornament",
+          "SET 7 BABUSHKA NESTING BOXES",
+          "RED WOOLLY HOTTIE WHITE HEART.",
+          "POPPY'S PLAYHOUSE BEDROOM",
+          "GLASS STAR FROSTED T-LIGHT HOLDER"
+        ]
+      },
+      {
+        "column": "Quantity",
+        "pandas_dtype": "str",
+        "semantic_type": "unknown",
+        "is_mixed_type": true,
+        "null_count": 0,
+        "null_percent": 0.0,
+        "unique_count": 61,
+        "sample_values": [
+          "38",
+          "34",
+          "23",
+          "43",
+          "-3"
+        ]
+      },
+      {
+        "column": "InvoiceDate",
+        "pandas_dtype": "str",
+        "semantic_type": "date",
+        "is_mixed_type": false,
+        "null_count": 0,
+        "null_percent": 0.0,
+        "unique_count": 500,
+        "sample_values": [
+          "2010-12-01 00:00:00.000000",
+          "2010-12-01 17:56:23.567134",
+          "2010-12-02 11:52:47.134268",
+          "2010-12-03 05:49:10.701402",
+          "2010-12-03 23:45:34.268537"
+        ]
+      },
+      {
+        "column": "UnitPrice",
+        "pandas_dtype": "float64",
+        "semantic_type": "numeric",
+        "is_mixed_type": false,
+        "null_count": 0,
+        "null_percent": 0.0,
+        "unique_count": 477,
+        "sample_values": [
+          "12.28",
+          "15.45",
+          "11.37",
+          "23.47",
+          "33.85"
+        ]
+      },
+      {
+        "column": "CustomerID",
+        "pandas_dtype": "float64",
+        "semantic_type": "id",
+        "is_mixed_type": false,
+        "null_count": 2,
+        "null_percent": 0.39,
+        "unique_count": 183,
+        "sample_values": [
+          "17772.0",
+          "16032.0",
+          "14284.0",
+          "17792.0",
+          "17775.0"
+        ]
+      },
+      {
+        "column": "Country",
+        "pandas_dtype": "str",
+        "semantic_type": "categorical",
+        "is_mixed_type": false,
+        "null_count": 73,
+        "null_percent": 14.17,
+        "unique_count": 5,
+        "sample_values": [
+          "United Kingdom",
+          "Germany",
+          "  Spain",
+          "France",
+          "eire"
+        ]
+      },
+      {
+        "column": "ContactEmail",
+        "pandas_dtype": "str",
+        "semantic_type": "email",
+        "is_mixed_type": false,
+        "null_count": 114,
+        "null_percent": 22.14,
+        "unique_count": 4,
+        "sample_values": [
+          "contact@shop.com",
+          "not-an-email",
+          "hello@retail.co.uk",
+          "user@@bad.com"
+        ]
+      }
+    ]
+  },
+  "missing_value_matrix": {
+    "InvoiceNo": {
+      "missing_count": 0,
+      "missing_percent": 0.0
+    },
+    "StockCode": {
+      "missing_count": 0,
+      "missing_percent": 0.0
+    },
+    "Description": {
+      "missing_count": 124,
+      "missing_percent": 24.08
+    },
+    "Quantity": {
+      "missing_count": 0,
+      "missing_percent": 0.0
+    },
+    "InvoiceDate": {
+      "missing_count": 0,
+      "missing_percent": 0.0
+    },
+    "UnitPrice": {
+      "missing_count": 0,
+      "missing_percent": 0.0
+    },
+    "CustomerID": {
+      "missing_count": 2,
+      "missing_percent": 0.39
+    },
+    "Country": {
+      "missing_count": 73,
+      "missing_percent": 14.17
+    },
+    "ContactEmail": {
+      "missing_count": 114,
+      "missing_percent": 22.14
+    }
+  },
+  "dtype_consistency_issues": {
+    "Quantity": "declared as text/numeric but contains inconsistent value types"
+  },
+  "cardinality_analysis": {
+    "InvoiceNo": {
+      "unique_count": 487,
+      "cardinality_ratio": 0.9456,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    },
+    "StockCode": {
+      "unique_count": 496,
+      "cardinality_ratio": 0.9631,
+      "is_likely_constant": false,
+      "is_likely_id_like": true
+    },
+    "Description": {
+      "unique_count": 6,
+      "cardinality_ratio": 0.0117,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    },
+    "Quantity": {
+      "unique_count": 61,
+      "cardinality_ratio": 0.1184,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    },
+    "InvoiceDate": {
+      "unique_count": 500,
+      "cardinality_ratio": 0.9709,
+      "is_likely_constant": false,
+      "is_likely_id_like": true
+    },
+    "UnitPrice": {
+      "unique_count": 477,
+      "cardinality_ratio": 0.9262,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    },
+    "CustomerID": {
+      "unique_count": 183,
+      "cardinality_ratio": 0.3553,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    },
+    "Country": {
+      "unique_count": 5,
+      "cardinality_ratio": 0.0097,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    },
+    "ContactEmail": {
+      "unique_count": 4,
+      "cardinality_ratio": 0.0078,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
+    }
+  },
+  "correlation_matrix": {
+    "InvoiceNo": {
+      "InvoiceNo": 1.0,
+      "StockCode": -0.015,
+      "UnitPrice": -0.039,
+      "CustomerID": -0.078
+    },
+    "StockCode": {
+      "InvoiceNo": -0.015,
+      "StockCode": 1.0,
+      "UnitPrice": -0.026,
+      "CustomerID": 0.021
+    },
+    "UnitPrice": {
+      "InvoiceNo": -0.039,
+      "StockCode": -0.026,
+      "UnitPrice": 1.0,
+      "CustomerID": 0.013
+    },
+    "CustomerID": {
+      "InvoiceNo": -0.078,
+      "StockCode": 0.021,
+      "UnitPrice": 0.013,
+      "CustomerID": 1.0
+    }
+  },
+  "visualisations_generated": [
+    "data/processed/visualisations/missing_heatmap.png",
+    "data/processed/visualisations/outlier_distribution.png",
+    "data/processed/visualisations/correlation_heatmap.png"
+  ]
+}

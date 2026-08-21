@@ -31,3 +31,25 @@
 consistency check, cardinality analysis, correlation matrix, and the
 backend visualisations (missing heatmap, outlier distribution, correlation
 heatmap).
+
+## Week 2 — Profiling Engine + Visualisations (Module 1)
+**Built:**
+- `modules/module1_profiling/profiler.py`
+- Missing-value matrix (count + % per column)
+- Data-type consistency check (flags columns whose values don't match their
+  declared type — reuses the mixed-type detector from Week 1)
+- Cardinality analysis (unique count, cardinality ratio, flags constant
+  and ID-like columns)
+- Correlation matrix for numeric columns
+- Backend visualisations, saved as PNGs: missing-value heatmap, per-column
+  outlier boxplots, correlation heatmap
+- `build_profiling_report()` ties it all together with the Week 1 metadata
+  extractor into one `profiling_report.json`
+
+**Tested:**
+- 7 new unit tests in `tests/test_profiler.py`, 13/13 passing project-wide
+- Verified visualisations render correctly against the sample dataset
+
+**Next (Week 3):** Profiling API wrapper + rule engine (suspicious formats,
+potential PII columns) + documentation (JSON schema, function signatures,
+integration instructions) — closes out Module 1.
