@@ -1,23 +1,11 @@
 """
 Metadata Extraction Engine
 Module 1 — Week 1 deliverable
-
-Given any tabular dataset, this module infers, per column:
-  - the structural (pandas) dtype
-  - an inferred "semantic" type (id, email, phone, date, name, categorical,
-    numeric, free_text, unknown) using lightweight pattern + heuristic checks
-  - whether the column is "mixed-type" (values that don't consistently
-    parse as one type — a classic messy-data problem)
-  - basic column stats (null count/%, unique count, sample values)
-
-Output: a Python dict, JSON-serialisable, matching the schema documented
-in docs/profiling_report_schema.md
 """
 
 import re
 import json
 from dataclasses import dataclass, asdict
-from typing import Any
 
 import pandas as pd
 import numpy as np
@@ -71,12 +59,6 @@ def _name_hint(col_name: str, hints: tuple) -> bool:
 
 
 def _detect_mixed_type(series: pd.Series) -> bool:
-    """
-    Flags a column as mixed-type if, after dropping nulls, more than one
-    underlying Python type appears (excluding trivial numpy int/float mix),
-    OR if the column is object-dtype but not all values can be coerced to
-    a single consistent parse (numeric vs text).
-    """
     vals = series.dropna()
     if len(vals) == 0:
         return False
@@ -145,17 +127,11 @@ def extract_column_metadata(df: pd.DataFrame, col: str) -> ColumnMetadata:
 
 def extract_metadata(df: pd.DataFrame) -> dict:
     columns_meta = [asdict(extract_column_metadata(df, c)) for c in df.columns]
-    return {
-        "n_rows": len(df),
-        "n_columns": len(df.columns),
-        "columns": columns_meta,
-    }
+    return {"n_rows": len(df), "n_columns": len(df.columns), "columns": columns_meta}
 
 
 if __name__ == "__main__":
     import sys
-
     path = sys.argv[1] if len(sys.argv) > 1 else "data/raw/sample_retail.csv"
     df = pd.read_csv(path)
-    result = extract_metadata(df)
-    print(json.dumps(result, indent=2))
+    print(json.dumps(extract_metadata(df), indent=2))

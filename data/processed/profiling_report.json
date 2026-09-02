@@ -1,7 +1,7 @@
 {
   "metadata": {
     "n_rows": 515,
-    "n_columns": 9,
+    "n_columns": 10,
     "columns": [
       {
         "column": "InvoiceNo",
@@ -40,15 +40,15 @@
         "pandas_dtype": "str",
         "semantic_type": "categorical",
         "is_mixed_type": false,
-        "null_count": 124,
-        "null_percent": 24.08,
+        "null_count": 127,
+        "null_percent": 24.66,
         "unique_count": 6,
         "sample_values": [
-          "assorted colour bird ornament",
-          "SET 7 BABUSHKA NESTING BOXES",
-          "RED WOOLLY HOTTIE WHITE HEART.",
+          "WHITE HANGING HEART T-LIGHT HOLDER",
+          "GLASS STAR FROSTED T-LIGHT HOLDER",
           "POPPY'S PLAYHOUSE BEDROOM",
-          "GLASS STAR FROSTED T-LIGHT HOLDER"
+          "assorted colour bird ornament",
+          "RED WOOLLY HOTTIE WHITE HEART."
         ]
       },
       {
@@ -145,6 +145,21 @@
           "hello@retail.co.uk",
           "user@@bad.com"
         ]
+      },
+      {
+        "column": "ContactPhone",
+        "pandas_dtype": "str",
+        "semantic_type": "phone",
+        "is_mixed_type": true,
+        "null_count": 95,
+        "null_percent": 18.45,
+        "unique_count": 4,
+        "sample_values": [
+          "07123456789",
+          "+44 20 7946 0958",
+          "12345",
+          "not-a-phone"
+        ]
       }
     ]
   },
@@ -158,8 +173,8 @@
       "missing_percent": 0.0
     },
     "Description": {
-      "missing_count": 124,
-      "missing_percent": 24.08
+      "missing_count": 127,
+      "missing_percent": 24.66
     },
     "Quantity": {
       "missing_count": 0,
@@ -184,10 +199,15 @@
     "ContactEmail": {
       "missing_count": 114,
       "missing_percent": 22.14
+    },
+    "ContactPhone": {
+      "missing_count": 95,
+      "missing_percent": 18.45
     }
   },
   "dtype_consistency_issues": {
-    "Quantity": "declared as text/numeric but contains inconsistent value types"
+    "Quantity": "declared as text/numeric but contains inconsistent value types",
+    "ContactPhone": "declared as text/numeric but contains inconsistent value types"
   },
   "cardinality_analysis": {
     "InvoiceNo": {
@@ -243,6 +263,12 @@
       "cardinality_ratio": 0.0078,
       "is_likely_constant": false,
       "is_likely_id_like": false
+    },
+    "ContactPhone": {
+      "unique_count": 4,
+      "cardinality_ratio": 0.0078,
+      "is_likely_constant": false,
+      "is_likely_id_like": false
     }
   },
   "correlation_matrix": {
@@ -275,5 +301,44 @@
     "data/processed/visualisations/missing_heatmap.png",
     "data/processed/visualisations/outlier_distribution.png",
     "data/processed/visualisations/correlation_heatmap.png"
+  ],
+  "suspicious_format_findings": [
+    {
+      "column": "Country",
+      "issue": "inconsistent casing or stray whitespace",
+      "detail": "values that should likely be treated as identical differ only in case or surrounding whitespace"
+    },
+    {
+      "column": "ContactEmail",
+      "issue": "malformed email values",
+      "detail": "only 51.4% of non-null values match a valid email format"
+    },
+    {
+      "column": "ContactPhone",
+      "issue": "malformed phone values",
+      "detail": "only 54.3% of non-null values match a valid phone format"
+    },
+    {
+      "column": "UnitPrice",
+      "issue": "negative values in a price/amount column",
+      "detail": "12 row(s) have negative values \u2014 verify whether these are legitimate (e.g. refunds) or data errors"
+    }
+  ],
+  "potential_pii_columns": [
+    {
+      "column": "CustomerID",
+      "likely_pii_type": "id",
+      "reason": "semantic type matched a PII category"
+    },
+    {
+      "column": "ContactEmail",
+      "likely_pii_type": "email",
+      "reason": "semantic type matched a PII category"
+    },
+    {
+      "column": "ContactPhone",
+      "likely_pii_type": "phone",
+      "reason": "semantic type matched a PII category"
+    }
   ]
 }

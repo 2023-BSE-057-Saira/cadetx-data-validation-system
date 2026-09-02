@@ -4,52 +4,47 @@
 - Selected domain: Retail / E-commerce
 - Selected dataset: UCI Online Retail dataset (real transactions, Dec 2010–Dec 2011)
 - Scaffolded repo: modules/, data/, tests/, docs/
-- Wrote project description (see README.md)
 
 ## Week 1 — Metadata Extraction Engine (Module 1)
-**Built:**
-- `modules/module1_profiling/metadata_extractor.py`
-- Infers pandas dtype + semantic type (id, email, phone, date, name,
-  categorical, numeric, free_text, unknown) per column using name-hints
-  and content-pattern heuristics
-- Detects mixed-type columns (e.g. a numeric column with stray text values)
-- Outputs null count/%, unique count, sample values per column
-
-**Decisions:**
-- Used heuristic/pattern matching rather than an ML classifier for semantic
-  type detection at this stage — simpler, explainable, and sufficient for
-  the profiling layer. Can revisit with an NLP classifier in Module 3.
-- Handled pandas 3.0's new default `str` dtype (not just legacy `object`)
-  so type-mixing detection works correctly on this environment.
-
-**Tested:**
-- 6 unit tests in `tests/test_metadata_extractor.py`, all passing
-- Verified against a 515-row synthetic messy retail dataset with known
-  injected issues (nulls, duplicates, mixed-type column, malformed emails)
-
-**Next (Week 2):** Profiling engine — missing-value matrix, data-type
-consistency check, cardinality analysis, correlation matrix, and the
-backend visualisations (missing heatmap, outlier distribution, correlation
-heatmap).
+**Built:** `metadata_extractor.py` — infers pandas dtype + semantic type
+(id, email, phone, date, name, categorical, numeric, free_text, unknown)
+per column, detects mixed-type columns, reports null%/unique/samples.
+**Tested:** 6 unit tests, all passing.
 
 ## Week 2 — Profiling Engine + Visualisations (Module 1)
+**Built:** `profiler.py` — missing-value matrix, dtype consistency check,
+cardinality analysis, correlation matrix, and 3 backend visualisations
+(missing heatmap, outlier boxplots, correlation heatmap).
+**Tested:** 7 new unit tests, 13/13 passing project-wide.
+
+## Week 3 — Profiling API + Rule Engine + Docs (Module 1 complete)
 **Built:**
-- `modules/module1_profiling/profiler.py`
-- Missing-value matrix (count + % per column)
-- Data-type consistency check (flags columns whose values don't match their
-  declared type — reuses the mixed-type detector from Week 1)
-- Cardinality analysis (unique count, cardinality ratio, flags constant
-  and ID-like columns)
-- Correlation matrix for numeric columns
-- Backend visualisations, saved as PNGs: missing-value heatmap, per-column
-  outlier boxplots, correlation heatmap
-- `build_profiling_report()` ties it all together with the Week 1 metadata
-  extractor into one `profiling_report.json`
+- `rule_engine.py` — standalone rules flagging suspicious formats
+  (inconsistent casing/whitespace, unparseable dates, malformed
+  emails/phones, negative price values) and potential PII columns
+  (email, phone, name, and personally-identifying ID columns —
+  generic transactional IDs like invoice numbers are excluded)
+- `api.py` — single public entry point (`profile_dataset` /
+  `profile_dataset_to_file`) wrapping metadata extraction + profiling +
+  rule engine into one call for downstream modules to use
+- `docs/module1_api.md` — full JSON schema, function signatures, and
+  integration instructions for Module 2 onward
 
-**Tested:**
-- 7 new unit tests in `tests/test_profiler.py`, 13/13 passing project-wide
-- Verified visualisations render correctly against the sample dataset
+**Decisions:**
+- Kept PII detection conservative: only flags an "id" column as PII if
+  its name also implies a person (e.g. `CustomerID`), not generic
+  product/transaction IDs — avoids false positives that would clutter
+  downstream handling.
+- Rules are small, independent functions in a `RULES` list, so new rules
+  can be added without touching existing logic.
 
-**Next (Week 3):** Profiling API wrapper + rule engine (suspicious formats,
-potential PII columns) + documentation (JSON schema, function signatures,
-integration instructions) — closes out Module 1.
+**Tested:** 9 new unit tests, 22/22 passing project-wide.
+
+**Module 1 is now complete.** Output: `profiling_report.json` containing
+metadata, missing-value matrix, dtype consistency issues, cardinality
+analysis, correlation matrix, visualisation file paths, suspicious-format
+findings, and potential PII columns.
+
+**Next (Week 4):** Module 2 begins — schema inference engine (expected
+types/ranges/formats) and the first pass of the cleaning pipeline
+(missing-value imputation, duplicate detection, format normalisation).
