@@ -1,0 +1,61 @@
+{
+  "steps": [
+    {
+      "step": "exact_duplicate_removal",
+      "rows_removed": 15
+    },
+    {
+      "step": "type_format_normalisation",
+      "details": [
+        {
+          "column": "InvoiceDate",
+          "action": "parsed_to_datetime",
+          "newly_unparseable": 0
+        },
+        {
+          "column": "Country",
+          "action": "normalised_casing_whitespace",
+          "rows_changed": 63
+        }
+      ]
+    },
+    {
+      "step": "missing_value_imputation",
+      "details": [
+        {
+          "column": "Description",
+          "strategy": "mode_imputation",
+          "fill_value": "POPPY'S PLAYHOUSE BEDROOM",
+          "rows_affected": 123
+        },
+        {
+          "column": "CustomerID",
+          "strategy": "mean_imputation",
+          "fill_value": 15156.3896,
+          "rows_affected": 2
+        },
+        {
+          "column": "Country",
+          "strategy": "mode_imputation",
+          "fill_value": "United Kingdom",
+          "rows_affected": 71
+        },
+        {
+          "column": "ContactEmail",
+          "strategy": "mode_imputation",
+          "fill_value": "contact@shop.com",
+          "rows_affected": 111
+        },
+        {
+          "column": "ContactPhone",
+          "strategy": "mode_imputation",
+          "fill_value": "07123456789",
+          "rows_affected": 94
+        }
+      ]
+    }
+  ],
+  "fuzzy_duplicate_findings": {},
+  "rows_before": 515,
+  "rows_after": 500
+}

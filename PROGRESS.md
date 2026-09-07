@@ -48,3 +48,33 @@ findings, and potential PII columns.
 **Next (Week 4):** Module 2 begins — schema inference engine (expected
 types/ranges/formats) and the first pass of the cleaning pipeline
 (missing-value imputation, duplicate detection, format normalisation).
+
+## Week 4 — Schema Inference + Cleaning Pipeline Basics (Module 2 begins)
+**Built:**
+- `schema_inference.py` — infers, per column, the expected dtype, a
+  plausible numeric range (IQR-based), and an expected string format,
+  built on top of Module 1's semantic type detection
+- `cleaning_pipeline.py`:
+  - statistical missing-value imputation (mean for numeric, mode for
+    categorical/text)
+  - exact-duplicate row detection and removal
+  - fuzzy-duplicate detection within text columns (catches near-identical
+    values like typos, not just exact matches)
+  - type/format normalisation: dates parsed to real datetime, numeric
+    columns coerced, categorical text normalised for casing/whitespace
+    (e.g. `"  Spain"` and `"Spain"` collapse to one canonical value)
+
+**Bug found & fixed during testing:** the casing/whitespace normaliser
+initially compared un-stripped values against a stripped lookup table, so
+`"  Spain"` never matched its own canonical entry and silently passed
+through unchanged. Fixed by stripping before the lookup key is built, and
+added a regression test (`test_normalise_casing_and_whitespace`) so it
+can't silently regress.
+
+**Tested:** 10 new unit tests, 32/32 passing project-wide. Verified against
+the sample dataset: 15/15 injected exact duplicates removed, 64/64
+`"  Spain"` rows correctly normalised to `"Spain"`.
+
+**Next (Week 5):** ML-based imputation (KNN, regression, iterative
+imputer) and the transformation engine (scaling, encoding, feature
+extraction).

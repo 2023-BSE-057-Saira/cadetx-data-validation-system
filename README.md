@@ -20,7 +20,9 @@ modules/
     profiler.py              Week 2: missing-value matrix, cardinality, correlation, visualisations
     rule_engine.py            Week 3: suspicious-format rules, PII detection
     api.py                    Week 3: public entry point (profile_dataset / profile_dataset_to_file)
-  module2_cleaning/     → cleaned_data.csv + cleaning_log.json (not started)
+  module2_cleaning/     → cleaned_data.csv + cleaning_log.json (in progress)
+    schema_inference.py      Week 4: expected type/range/format per column
+    cleaning_pipeline.py     Week 4: statistical imputation, duplicate detection (exact + fuzzy), normalisation
   module3_validation/   → validation_report.json (not started)
   module4_automation/   → end-to-end CLI pipeline (not started)
 data/
@@ -35,7 +37,8 @@ docs/                   → module1_api.md (schema, function signatures, integra
 - [x] Week 1: Metadata extraction engine
 - [x] Week 2: Profiling engine + visualisations
 - [x] Week 3: Profiling API + rule engine + docs — **Module 1 complete**
-- [ ] Week 4: Schema inference + cleaning pipeline basics (Module 2 begins)
+- [x] Week 4: Schema inference + cleaning pipeline basics (Module 2 begins)
+- [ ] Week 5: ML-based imputation + transformation engine
 
 ## Setup
 ```
