@@ -1,80 +1,58 @@
 # Progress Log
 
 ## Week 0 — Foundation
-- Selected domain: Retail / E-commerce
-- Selected dataset: UCI Online Retail dataset (real transactions, Dec 2010–Dec 2011)
-- Scaffolded repo: modules/, data/, tests/, docs/
+Selected domain (Retail/E-commerce) and dataset (UCI Online Retail). Scaffolded repo.
 
 ## Week 1 — Metadata Extraction Engine (Module 1)
-**Built:** `metadata_extractor.py` — infers pandas dtype + semantic type
-(id, email, phone, date, name, categorical, numeric, free_text, unknown)
-per column, detects mixed-type columns, reports null%/unique/samples.
-**Tested:** 6 unit tests, all passing.
+Built `metadata_extractor.py`: dtype + semantic type inference, mixed-type detection. 6 tests.
 
 ## Week 2 — Profiling Engine + Visualisations (Module 1)
-**Built:** `profiler.py` — missing-value matrix, dtype consistency check,
-cardinality analysis, correlation matrix, and 3 backend visualisations
-(missing heatmap, outlier boxplots, correlation heatmap).
-**Tested:** 7 new unit tests, 13/13 passing project-wide.
+Built `profiler.py`: missing-value matrix, dtype consistency, cardinality, correlation, 3 visualisations. 7 new tests.
 
 ## Week 3 — Profiling API + Rule Engine + Docs (Module 1 complete)
-**Built:**
-- `rule_engine.py` — standalone rules flagging suspicious formats
-  (inconsistent casing/whitespace, unparseable dates, malformed
-  emails/phones, negative price values) and potential PII columns
-  (email, phone, name, and personally-identifying ID columns —
-  generic transactional IDs like invoice numbers are excluded)
-- `api.py` — single public entry point (`profile_dataset` /
-  `profile_dataset_to_file`) wrapping metadata extraction + profiling +
-  rule engine into one call for downstream modules to use
-- `docs/module1_api.md` — full JSON schema, function signatures, and
-  integration instructions for Module 2 onward
-
-**Decisions:**
-- Kept PII detection conservative: only flags an "id" column as PII if
-  its name also implies a person (e.g. `CustomerID`), not generic
-  product/transaction IDs — avoids false positives that would clutter
-  downstream handling.
-- Rules are small, independent functions in a `RULES` list, so new rules
-  can be added without touching existing logic.
-
-**Tested:** 9 new unit tests, 22/22 passing project-wide.
-
-**Module 1 is now complete.** Output: `profiling_report.json` containing
-metadata, missing-value matrix, dtype consistency issues, cardinality
-analysis, correlation matrix, visualisation file paths, suspicious-format
-findings, and potential PII columns.
-
-**Next (Week 4):** Module 2 begins — schema inference engine (expected
-types/ranges/formats) and the first pass of the cleaning pipeline
-(missing-value imputation, duplicate detection, format normalisation).
+Built `rule_engine.py` (suspicious formats, PII detection) and `api.py` (single entry point).
+Wrote `docs/module1_api.md`. 9 new tests.
 
 ## Week 4 — Schema Inference + Cleaning Pipeline Basics (Module 2 begins)
+Built `schema_inference.py` and `cleaning_pipeline.py`: statistical imputation, exact +
+fuzzy duplicate detection, type/casing/whitespace normalisation. Found and fixed a bug
+where un-stripped values weren't matching their own stripped canonical form. 10 new tests.
+
+## Week 5 — ML-Based Imputation + Transformation Engine
 **Built:**
-- `schema_inference.py` — infers, per column, the expected dtype, a
-  plausible numeric range (IQR-based), and an expected string format,
-  built on top of Module 1's semantic type detection
-- `cleaning_pipeline.py`:
-  - statistical missing-value imputation (mean for numeric, mode for
-    categorical/text)
-  - exact-duplicate row detection and removal
-  - fuzzy-duplicate detection within text columns (catches near-identical
-    values like typos, not just exact matches)
-  - type/format normalisation: dates parsed to real datetime, numeric
-    columns coerced, categorical text normalised for casing/whitespace
-    (e.g. `"  Spain"` and `"Spain"` collapse to one canonical value)
+- `ml_imputation.py` — three ML imputation strategies for numeric columns:
+  - KNN imputer (fills using the average of similar rows)
+  - Regression imputer (predicts missing values from correlated numeric columns)
+  - Iterative imputer / MICE-style (models each column as a function of the others,
+    repeated until estimates stabilise)
+  - `compare_imputation_strategies()` runs all three so a strategy can be chosen
+    deliberately based on the data, rather than picking one arbitrarily
+- `transformation_engine.py`:
+  - Scaling: standardises numeric columns (mean 0, std 1), skipping ID-like columns
+  - Encoding: one-hot for low-cardinality categorical columns, label encoding for
+    higher-cardinality ones
+  - Feature extraction: year/month/day-of-week/is-weekend from date columns, and a
+    dataset-agnostic `total_value` feature when quantity- and price-like columns
+    are both present (matched by column-name pattern, not hardcoded to this dataset)
 
-**Bug found & fixed during testing:** the casing/whitespace normaliser
-initially compared un-stripped values against a stripped lookup table, so
-`"  Spain"` never matched its own canonical entry and silently passed
-through unchanged. Fixed by stripping before the lookup key is built, and
-added a regression test (`test_normalise_casing_and_whitespace`) so it
-can't silently regress.
+**Bug found & fixed during testing:** the phone-number regex from Week 1
+(`^\+?[\d\s().-]{7,15}$`) is loose enough that plain date strings like
+`"2021-01-04"` also match it (digits + dashes, right length). This meant
+a date column with no obvious name hint could get mis-classified as a phone
+column. Fixed by restructuring `infer_semantic_type()` so column-name hints
+are always checked before ambiguous content-based regex heuristics — the
+column's own name is a more reliable signal than a regex that happens to
+match multiple formats. Added a regression test using a 2-row date-only
+DataFrame (the case that originally exposed the bug) so it can't silently
+come back.
 
-**Tested:** 10 new unit tests, 32/32 passing project-wide. Verified against
-the sample dataset: 15/15 injected exact duplicates removed, 64/64
-`"  Spain"` rows correctly normalised to `"Spain"`.
+**Tested:** 11 new unit tests, 41/41 passing project-wide. Verified
+end-to-end: KNN/iterative/regression imputation all correctly fill
+`CustomerID`'s missing values on the sample dataset; regression achieves
+high R² on a synthetic strongly-correlated pair, confirming the model is
+learning a real relationship rather than guessing.
 
-**Next (Week 5):** ML-based imputation (KNN, regression, iterative
-imputer) and the transformation engine (scaling, encoding, feature
-extraction).
+**Next (Week 6):** Data-quality scoring (before/after cleaning), the
+Cleaning API wrapper (raw dataset in → `cleaned_data.csv` +
+`cleaning_log.json` out), and pytest unit + integration tests — closes
+out Module 2.

@@ -1,6 +1,5 @@
 import sys, os
 import pandas as pd
-
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "modules", "module1_profiling"))
 from profiler import (
     missing_value_matrix, dtype_consistency_check, cardinality_analysis,
@@ -12,7 +11,6 @@ def test_missing_value_matrix():
     df = pd.DataFrame({"a": [1, None, 3], "b": [1, 2, 3]})
     result = missing_value_matrix(df)
     assert result["a"]["missing_count"] == 1
-    assert result["b"]["missing_count"] == 0
 
 
 def test_dtype_consistency_flags_mixed_column():

@@ -1,0 +1,61 @@
+{
+  "scaling": {
+    "scaled_columns": [
+      "UnitPrice"
+    ],
+    "means": {
+      "UnitPrice": 24.1733
+    },
+    "stds": {
+      "UnitPrice": 14.9686
+    }
+  },
+  "encoding": {
+    "onehot_encoded": [
+      {
+        "column": "Description",
+        "n_categories": 6,
+        "new_columns": [
+          "Description_GLASS STAR FROSTED T-LIGHT HOLDER",
+          "Description_POPPY'S PLAYHOUSE BEDROOM",
+          "Description_RED WOOLLY HOTTIE WHITE HEART.",
+          "Description_SET 7 BABUSHKA NESTING BOXES",
+          "Description_WHITE HANGING HEART T-LIGHT HOLDER",
+          "Description_assorted colour bird ornament"
+        ]
+      },
+      {
+        "column": "Country",
+        "n_categories": 5,
+        "new_columns": [
+          "Country_  Spain",
+          "Country_France",
+          "Country_Germany",
+          "Country_United Kingdom",
+          "Country_eire"
+        ]
+      }
+    ],
+    "label_encoded": []
+  },
+  "date_features": [
+    {
+      "column": "InvoiceDate",
+      "features_added": [
+        "InvoiceDate_year",
+        "InvoiceDate_month",
+        "InvoiceDate_day_of_week",
+        "InvoiceDate_is_weekend"
+      ]
+    }
+  ],
+  "derived_features": [
+    {
+      "feature": "total_value",
+      "derived_from": [
+        "Quantity",
+        "UnitPrice"
+      ]
+    }
+  ]
+}

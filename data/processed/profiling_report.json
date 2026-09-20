@@ -306,22 +306,22 @@
     {
       "column": "Country",
       "issue": "inconsistent casing or stray whitespace",
-      "detail": "values that should likely be treated as identical differ only in case or surrounding whitespace"
+      "detail": "values that should likely be identical differ in case/whitespace"
     },
     {
       "column": "ContactEmail",
       "issue": "malformed email values",
-      "detail": "only 51.4% of non-null values match a valid email format"
+      "detail": "only 51.4% match a valid email format"
     },
     {
       "column": "ContactPhone",
       "issue": "malformed phone values",
-      "detail": "only 54.3% of non-null values match a valid phone format"
+      "detail": "only 54.3% match a valid phone format"
     },
     {
       "column": "UnitPrice",
       "issue": "negative values in a price/amount column",
-      "detail": "12 row(s) have negative values \u2014 verify whether these are legitimate (e.g. refunds) or data errors"
+      "detail": "12 row(s) negative \u2014 verify legitimacy"
     }
   ],
   "potential_pii_columns": [

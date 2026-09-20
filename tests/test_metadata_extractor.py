@@ -1,6 +1,5 @@
 import sys, os
 import pandas as pd
-
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "modules", "module1_profiling"))
 from metadata_extractor import extract_metadata, infer_semantic_type, _detect_mixed_type
 
