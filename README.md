@@ -17,18 +17,20 @@ modules/
     profiler.py              Week 2: missing-value matrix, cardinality, correlation, visualisations
     rule_engine.py            Week 3: suspicious-format rules, PII detection
     api.py                    Week 3: public entry point
-  module2_cleaning/     → cleaned_data.csv + cleaning_log.json (in progress)
+  module2_cleaning/     → cleaned_data.csv + cleaning_log.json  (COMPLETE)
     schema_inference.py      Week 4: expected type/range/format per column
     cleaning_pipeline.py     Week 4: statistical imputation, duplicate detection, normalisation
     ml_imputation.py         Week 5: KNN, regression, and iterative imputation
     transformation_engine.py Week 5: scaling, encoding, feature extraction
+    quality_scoring.py       Week 6: 4-dimension quality score, before/after/delta
+    cleaning_api.py          Week 6: public entry point (clean_dataset / clean_dataset_to_files)
   module3_validation/   → validation_report.json (not started)
   module4_automation/   → end-to-end CLI pipeline (not started)
 data/
   raw/                  → input datasets
   processed/            → pipeline outputs + visualisations
-tests/                  → 41 pytest unit tests, all passing
-docs/                   → module1_api.md (schema, function signatures, integration guide)
+tests/                  → 67 pytest unit + integration tests, all passing
+docs/                   → module1_api.md, module2_api.md (schemas, signatures, integration guides)
 ```
 
 ## Status
@@ -38,16 +40,17 @@ docs/                   → module1_api.md (schema, function signatures, integra
 - [x] Week 3: Profiling API + rule engine + docs — **Module 1 complete**
 - [x] Week 4: Schema inference + cleaning pipeline basics
 - [x] Week 5: ML-based imputation + transformation engine
-- [ ] Week 6: Data-quality scoring + cleaning API + tests — closes Module 2
+- [x] Week 6: Data-quality scoring + cleaning API + tests — **Module 2 complete**
+- [ ] Week 7: Rule-based validation (Module 3 begins)
 
 ## Setup
 ```
 pip install -r requirements.txt
 python3 modules/module1_profiling/api.py data/raw/sample_retail.csv
-python3 modules/module2_cleaning/cleaning_pipeline.py data/raw/sample_retail.csv
+python3 modules/module2_cleaning/cleaning_api.py data/raw/sample_retail.csv   # writes cleaned_data.csv + cleaning_log.json
 python3 modules/module2_cleaning/ml_imputation.py data/raw/sample_retail.csv
 python3 modules/module2_cleaning/transformation_engine.py data/raw/sample_retail.csv
 python3 -m pytest tests/ -v
 ```
 
-See `docs/module1_api.md` for the Module 1 API reference and JSON schema.
+See `docs/module1_api.md` and `docs/module2_api.md` for the API references and JSON schemas.

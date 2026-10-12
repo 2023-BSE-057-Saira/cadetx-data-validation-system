@@ -36,8 +36,17 @@ from schema_inference import build_schema
 
 
 def _numeric_columns(df: pd.DataFrame, schema: dict) -> list:
+    # Only true numeric measures: identifiers (CustomerID etc.) are neither
+    # meaningful predictors nor something that should ever be imputed.
     return [c for c, s in schema.items()
-            if c in df.columns and s["expected_dtype"] in ("integer", "float")]
+            if c in df.columns and s["expected_dtype"] in ("integer", "float")
+            and s["semantic_type"] == "numeric"]
+
+
+def _usable(numeric_block):
+    """sklearn imputers silently drop all-NaN columns, which breaks shape
+    alignment — exclude them up front."""
+    return [c for c in numeric_block.columns if numeric_block[c].notna().any()]
 
 
 def knn_impute(df: pd.DataFrame, schema: dict, n_neighbors: int = 5) -> tuple:
@@ -48,6 +57,8 @@ def knn_impute(df: pd.DataFrame, schema: dict, n_neighbors: int = 5) -> tuple:
         return df, {"strategy": "knn", "columns_imputed": [], "note": "no numeric columns"}
 
     numeric_block = df[num_cols].apply(pd.to_numeric, errors="coerce")
+    num_cols = _usable(numeric_block)
+    numeric_block = numeric_block[num_cols]
     missing_before = numeric_block.isna().sum()
 
     imputer = KNNImputer(n_neighbors=n_neighbors)
@@ -112,6 +123,8 @@ def iterative_impute(df: pd.DataFrame, schema: dict, max_iter: int = 10) -> tupl
         return df, {"strategy": "iterative", "columns_imputed": [], "note": "no numeric columns"}
 
     numeric_block = df[num_cols].apply(pd.to_numeric, errors="coerce")
+    num_cols = _usable(numeric_block)
+    numeric_block = numeric_block[num_cols]
     missing_before = numeric_block.isna().sum()
 
     imputer = IterativeImputer(max_iter=max_iter, random_state=42)

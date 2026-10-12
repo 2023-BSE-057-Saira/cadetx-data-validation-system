@@ -7,6 +7,13 @@ sys.path.insert(0, os.path.dirname(__file__))
 from schema_inference import build_schema
 
 
+# Columns whose values identify a specific record or person. Filling a
+# missing CustomerID with a mean, or a missing email with the most common
+# email, invents data that looks real but is wrong — so these are left
+# missing (and reported) rather than imputed.
+NON_IMPUTABLE_SEMANTICS = {"id", "email", "phone", "name", "date", "free_text", "unknown"}
+
+
 def impute_missing_statistical(df, schema):
     df = df.copy()
     log = []
@@ -14,10 +21,21 @@ def impute_missing_statistical(df, schema):
         n_missing = int(df[col].isna().sum())
         if n_missing == 0:
             continue
-        expected_dtype = schema.get(col, {}).get("expected_dtype", "string")
+        spec = schema.get(col, {})
+        semantic = spec.get("semantic_type")
+        if semantic in NON_IMPUTABLE_SEMANTICS:
+            log.append({"column": col, "strategy": "skipped_not_imputable",
+                        "reason": f"{semantic} values cannot be meaningfully inferred",
+                        "rows_still_missing": n_missing})
+            continue
+        expected_dtype = spec.get("expected_dtype", "string")
         if expected_dtype in ("integer", "float"):
             numeric = pd.to_numeric(df[col], errors="coerce")
             fill_value = numeric.mean()
+            if pd.isna(fill_value):
+                log.append({"column": col, "strategy": "skipped_no_observed_values",
+                            "rows_still_missing": n_missing})
+                continue
             df[col] = numeric.fillna(fill_value)
             log.append({"column": col, "strategy": "mean_imputation",
                         "fill_value": round(float(fill_value), 4), "rows_affected": n_missing})
@@ -90,15 +108,31 @@ def normalise_types_and_formats(df, schema):
     return df, log
 
 
-def run_cleaning_pipeline(df, schema=None):
+VALID_NUMERIC_IMPUTATION = ("statistical", "knn", "iterative")
+
+
+def run_cleaning_pipeline(df, schema=None, numeric_imputation="statistical"):
+    """
+    Order matters:
+      1. drop exact duplicates
+      2. normalise types/casing/whitespace
+      3. drop duplicates again (rows that differed only by whitespace/casing
+         are identical now)
+      4. impute numeric columns (statistical, KNN or iterative)
+      5. statistical imputation for whatever remains imputable
+    Duplicates are removed BEFORE imputation so imputed values can never
+    create or hide duplicates.
+    """
+    if numeric_imputation not in VALID_NUMERIC_IMPUTATION:
+        raise ValueError(f"numeric_imputation must be one of {VALID_NUMERIC_IMPUTATION}")
     if schema is None:
         schema = build_schema(df)
 
     cleaning_log = {"steps": []}
+
     exact_dup_mask = detect_exact_duplicates(df)
-    n_exact_dups = int(exact_dup_mask.sum())
     df_deduped = df[~exact_dup_mask].reset_index(drop=True)
-    cleaning_log["steps"].append({"step": "exact_duplicate_removal", "rows_removed": n_exact_dups})
+    cleaning_log["steps"].append({"step": "exact_duplicate_removal", "rows_removed": int(exact_dup_mask.sum())})
 
     text_cols = [c for c, s in schema.items() if s["semantic_type"] in ("categorical", "free_text")]
     fuzzy_findings = {}
@@ -112,9 +146,21 @@ def run_cleaning_pipeline(df, schema=None):
     df_normalised, normalise_log = normalise_types_and_formats(df_deduped, schema)
     cleaning_log["steps"].append({"step": "type_format_normalisation", "details": normalise_log})
 
+    post_mask = detect_exact_duplicates(df_normalised)
+    df_normalised = df_normalised[~post_mask].reset_index(drop=True)
+    cleaning_log["steps"].append({"step": "post_normalisation_duplicate_removal",
+                                  "rows_removed": int(post_mask.sum())})
+
+    if numeric_imputation != "statistical":
+        from ml_imputation import knn_impute, iterative_impute
+        ml_fn = knn_impute if numeric_imputation == "knn" else iterative_impute
+        df_normalised, ml_log = ml_fn(df_normalised, schema)
+        cleaning_log["steps"].append({"step": "ml_numeric_imputation", "details": ml_log})
+
     df_imputed, impute_log = impute_missing_statistical(df_normalised, schema)
     cleaning_log["steps"].append({"step": "missing_value_imputation", "details": impute_log})
 
+    cleaning_log["numeric_imputation"] = numeric_imputation
     cleaning_log["rows_before"] = len(df)
     cleaning_log["rows_after"] = len(df_imputed)
 

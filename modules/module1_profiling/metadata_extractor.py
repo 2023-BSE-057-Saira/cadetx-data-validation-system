@@ -36,11 +36,20 @@ def _looks_like_phone(series):
 
 
 def _looks_like_date(series):
-    vals = series.dropna().astype(str)
+    """Fraction of values that look like dates.
+
+    Bare digit strings ('07123', '2021') are NOT counted: pandas happily
+    reads them as a year, which would make any numeric code / postcode
+    column look like a date column. Real date strings contain a separator
+    or month name ('2021-01-04', '4 Jan 2021'). A column whose NAME says
+    it is a date is still caught by the name-hint check.
+    """
+    vals = series.dropna().astype(str).str.strip()
     if len(vals) == 0:
         return 0.0
+    pure_digits = vals.str.fullmatch(r"\d+")
     parsed = pd.to_datetime(vals, errors="coerce", format="mixed")
-    return parsed.notna().mean()
+    return float((parsed.notna() & ~pure_digits).mean())
 
 
 def _name_hint(col_name, hints):

@@ -1,121 +1,70 @@
 # Module 1 — Profiling: API Documentation
 
-Module 1 exposes a single public entry point in `modules/module1_profiling/api.py`.
-Downstream modules (Cleaning, Validation, Automation) should only need to
-import from this file — everything else in `module1_profiling/` is an
-internal implementation detail.
+Single public entry point: `modules/module1_profiling/api.py`. Downstream
+modules should import only from this file.
 
-## Function Signatures
+## Function signatures
 
 ### `profile_dataset(input_data, viz_out_dir="data/processed/visualisations") -> dict`
-Runs the full Module 1 pipeline in memory and returns the report as a dict.
-
-- `input_data`: a `pandas.DataFrame`, or a `str` path to a CSV file
-- `viz_out_dir`: directory to write the generated PNG visualisations to
-- Returns: `dict` matching the `profiling_report.json` schema below
+Runs the full Module 1 pipeline in memory.
+- `input_data`: a `pandas.DataFrame`, or a `str` path to a CSV
+- `viz_out_dir`: where the PNG visualisations are written
+- Returns: dict matching the `profiling_report.json` schema below
 
 ### `profile_dataset_to_file(input_path, output_path="data/processed/profiling_report.json", viz_out_dir="data/processed/visualisations") -> str`
-Convenience wrapper: reads a CSV from disk, profiles it, and writes the
-report to a JSON file.
+Reads a CSV, profiles it, writes `profiling_report.json`; returns `output_path`.
 
-- `input_path`: path to the input CSV
-- `output_path`: where to write `profiling_report.json`
-- Returns: the `output_path` string, for chaining into Module 4's orchestrator
-
-## Integration Instructions
-
-To use Module 1 from another module (e.g. Module 4's pipeline orchestrator):
+## Integration
 
 ```python
 from modules.module1_profiling.api import profile_dataset_to_file
-
-report_path = profile_dataset_to_file(
-    input_path="data/raw/online_retail.csv",
-    output_path="data/processed/profiling_report.json",
-)
-# report_path now points to the JSON file Module 2 (Cleaning) should read
+report_path = profile_dataset_to_file("data/raw/online_retail.csv")
 ```
 
-Or, to work with the report in memory without touching disk:
-
-```python
-from modules.module1_profiling.api import profile_dataset
-import pandas as pd
-
-df = pd.read_csv("data/raw/online_retail.csv")
-report = profile_dataset(df)
-suspicious_columns = [f["column"] for f in report["suspicious_format_findings"]]
-```
-
-## `profiling_report.json` Schema
+## `profiling_report.json` schema
 
 ```
 {
   "metadata": {
-    "n_rows": int,
-    "n_columns": int,
-    "columns": [
-      {
-        "column": str,
-        "pandas_dtype": str,
-        "semantic_type": "id" | "numeric" | "email" | "phone" | "date" |
-                          "name" | "categorical" | "free_text" | "unknown",
-        "is_mixed_type": bool,
-        "null_count": int,
-        "null_percent": float,
-        "unique_count": int,
-        "sample_values": [str, ...]
-      },
-      ...
-    ]
+    "n_rows": int, "n_columns": int,
+    "columns": [{
+      "column": str, "pandas_dtype": str,
+      "semantic_type": "id"|"numeric"|"email"|"phone"|"date"|"name"|"categorical"|"free_text"|"unknown",
+      "is_mixed_type": bool, "null_count": int, "null_percent": float,
+      "unique_count": int, "sample_values": [str]
+    }]
   },
-  "missing_value_matrix": {
-    "<column_name>": { "missing_count": int, "missing_percent": float },
-    ...
-  },
-  "dtype_consistency_issues": {
-    "<column_name>": "<description of the inconsistency>",
-    ...
-  },
-  "cardinality_analysis": {
-    "<column_name>": {
-      "unique_count": int,
-      "cardinality_ratio": float,
-      "is_likely_constant": bool,
-      "is_likely_id_like": bool
-    },
-    ...
-  },
-  "correlation_matrix": {
-    "<column_name>": { "<other_column_name>": float, ... },
-    ...
-  },
-  "visualisations_generated": [str, ...],   // file paths to PNGs
-  "suspicious_format_findings": [
-    { "column": str, "issue": str, "detail": str },
-    ...
-  ],
-  "potential_pii_columns": [
-    { "column": str, "likely_pii_type": str, "reason": str },
-    ...
-  ]
+  "missing_value_matrix": { "<col>": {"missing_count": int, "missing_percent": float} },
+  "dtype_consistency_issues": { "<col>": str },
+  "cardinality_analysis": { "<col>": {"unique_count": int, "cardinality_ratio": float,
+                                       "is_likely_constant": bool, "is_likely_id_like": bool} },
+  "correlation_matrix": { "<col>": { "<other_col>": float } },
+  "visualisations_generated": [str],
+  "suspicious_format_findings": [{"column": str, "issue": str, "detail": str}],
+  "potential_pii_columns": [{"column": str, "likely_pii_type": str, "reason": str}]
 }
 ```
 
-## Rule Engine — Rules Currently Implemented
+## Semantic-type detection order
 
-| Rule | What it flags |
+1. Numeric dtype -> `id` (if the name hints at an identifier) or `numeric`
+2. **Column-name hints** (email, phone, date, name, id) — always first, because
+   content heuristics can be ambiguous (a date like `2021-01-04` also fits a
+   loose phone pattern)
+3. Content heuristics, most specific first: email, then date, then phone
+4. Cardinality fallback: `categorical` / `free_text` / `unknown`
+
+Bare digit strings (`07123`) are never treated as dates by content inference.
+
+## Rule engine
+
+| Rule | Flags |
 |---|---|
-| `rule_inconsistent_casing_or_whitespace` | Text columns where the same value appears with different casing or stray whitespace (e.g. `"UK"` vs `" uk"`) |
+| `rule_inconsistent_casing_or_whitespace` | Same value written with different case / stray whitespace |
 | `rule_unparseable_dates` | Date-named columns where >2% of values fail to parse |
-| `rule_malformed_emails_or_phones` | Email/phone-named columns where <90% of values match a valid format |
-| `rule_suspicious_numeric_ranges` | Price/amount columns containing negative values |
+| `rule_malformed_emails_or_phones` | Email/phone-named columns where <90% match a valid format |
+| `rule_suspicious_numeric_ranges` | Negative values in price/amount/cost columns |
 
-PII detection (`detect_pii_columns`) flags columns by semantic type
-(`email`, `phone`, `name`, or an `id` column whose *name* also suggests a
-person — e.g. `CustomerID`) — generic transactional/product IDs (invoice
-numbers, SKUs) are intentionally excluded.
-
-Adding a new rule: write a function `(df: pd.DataFrame) -> list[dict]`
-following the existing pattern in `rule_engine.py`, then add it to the
-`RULES` list at the bottom of that file. No other file needs to change.
+PII detection flags email, phone, name columns and ID columns whose *name*
+implies a person (e.g. `CustomerID`); generic invoice/SKU IDs are excluded.
+New rule: add a `(df) -> list[dict]` function and append it to `RULES`.

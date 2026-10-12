@@ -6,8 +6,39 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "module1_profil
 from metadata_extractor import infer_semantic_type
 
 
+def _mostly_numeric_text(series, threshold=0.8):
+    """True if a text column is a numeric column with a few stray
+    non-numeric values (e.g. '38', '12', 'unknown').
+
+    Deliberately strict, so real text columns are never coerced:
+      - must be MIXED: at least `threshold` of values numeric, but not all
+        (a fully-numeric text column is left alone)
+      - values with leading zeros ('07123', '00123') are codes/postcodes,
+        not quantities; coercing them would silently destroy the zeros
+    """
+    if not (pd.api.types.is_object_dtype(series) or pd.api.types.is_string_dtype(series)):
+        return False
+    vals = series.dropna().astype(str).str.strip()
+    if len(vals) == 0:
+        return False
+    if vals.str.match(r"^0\d+").any():
+        return False
+    frac_numeric = pd.to_numeric(vals, errors="coerce").notna().mean()
+    return threshold <= frac_numeric < 1.0
+
+
 def infer_expected_type(series, col_name):
     semantic = infer_semantic_type(series, col_name)
+
+    # Module 1 labels a mixed-type numeric column "unknown" or "categorical"
+    # (depending only on how many distinct values it has); recover it as
+    # numeric so cleaning can coerce the stray text and impute.
+    if semantic in ("unknown", "categorical") and _mostly_numeric_text(series):
+        semantic = "numeric"
+        parsed = pd.to_numeric(series.dropna(), errors="coerce").dropna()
+        expected_dtype = "integer" if (parsed % 1 == 0).all() else "float"
+        return {"semantic_type": semantic, "expected_dtype": expected_dtype}
+
     if semantic in ("numeric", "id"):
         expected_dtype = "integer" if pd.api.types.is_integer_dtype(series.dropna()) else "float"
     elif semantic == "date":
@@ -43,8 +74,8 @@ def infer_expected_format(series, col_name, semantic):
 def build_schema(df):
     schema = {}
     for col in df.columns:
-        semantic = infer_semantic_type(df[col], col)
         entry = infer_expected_type(df[col], col)
+        semantic = entry["semantic_type"]
         entry["expected_range"] = infer_expected_range(df[col])
         entry["expected_format"] = infer_expected_format(df[col], col, semantic)
         schema[col] = entry

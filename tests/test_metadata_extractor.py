@@ -34,3 +34,15 @@ def test_null_count_and_percent():
     col = extract_metadata(df)["columns"][0]
     assert col["null_count"] == 2
     assert col["null_percent"] == 50.0
+
+
+def test_digit_codes_are_not_mistaken_for_dates():
+    """Regression: '07123' parses as year 7123, which made postcode columns look like dates."""
+    from metadata_extractor import _looks_like_date
+    assert _looks_like_date(pd.Series(["07123", "07124", "07125"])) == 0.0
+    assert infer_semantic_type(pd.Series(["07123", "07124", "07125", "N/A"]), "Region") != "date"
+
+
+def test_real_date_strings_are_still_detected():
+    from metadata_extractor import _looks_like_date
+    assert _looks_like_date(pd.Series(["2021-01-04", "2021-02-10", "2021-03-15"])) == 1.0

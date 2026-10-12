@@ -1,0 +1,236 @@
+{
+  "steps": [
+    {
+      "step": "exact_duplicate_removal",
+      "rows_removed": 15
+    },
+    {
+      "step": "type_format_normalisation",
+      "details": [
+        {
+          "column": "Quantity",
+          "action": "coerced_to_numeric",
+          "newly_unparseable": 10
+        },
+        {
+          "column": "InvoiceDate",
+          "action": "parsed_to_datetime",
+          "newly_unparseable": 0
+        },
+        {
+          "column": "Country",
+          "action": "normalised_casing_whitespace",
+          "rows_changed": 63
+        }
+      ]
+    },
+    {
+      "step": "post_normalisation_duplicate_removal",
+      "rows_removed": 0
+    },
+    {
+      "step": "missing_value_imputation",
+      "details": [
+        {
+          "column": "Description",
+          "strategy": "mode_imputation",
+          "fill_value": "POPPY'S PLAYHOUSE BEDROOM",
+          "rows_affected": 123
+        },
+        {
+          "column": "Quantity",
+          "strategy": "mean_imputation",
+          "fill_value": 19.9612,
+          "rows_affected": 10
+        },
+        {
+          "column": "CustomerID",
+          "strategy": "skipped_not_imputable",
+          "reason": "id values cannot be meaningfully inferred",
+          "rows_still_missing": 2
+        },
+        {
+          "column": "Country",
+          "strategy": "mode_imputation",
+          "fill_value": "United Kingdom",
+          "rows_affected": 71
+        },
+        {
+          "column": "ContactEmail",
+          "strategy": "skipped_not_imputable",
+          "reason": "email values cannot be meaningfully inferred",
+          "rows_still_missing": 111
+        },
+        {
+          "column": "ContactPhone",
+          "strategy": "skipped_not_imputable",
+          "reason": "phone values cannot be meaningfully inferred",
+          "rows_still_missing": 94
+        }
+      ]
+    }
+  ],
+  "fuzzy_duplicate_findings": {},
+  "numeric_imputation": "statistical",
+  "rows_before": 515,
+  "rows_after": 500,
+  "schema": {
+    "InvoiceNo": {
+      "semantic_type": "id",
+      "expected_dtype": "integer",
+      "expected_range": {
+        "observed_min": 530053.0,
+        "observed_max": 539979.0,
+        "plausible_lower_bound": 525114.75,
+        "plausible_upper_bound": 544892.75
+      },
+      "expected_format": null
+    },
+    "StockCode": {
+      "semantic_type": "id",
+      "expected_dtype": "integer",
+      "expected_range": {
+        "observed_min": 10394.0,
+        "observed_max": 99918.0,
+        "plausible_lower_bound": -39209.5,
+        "plausible_upper_bound": 149698.5
+      },
+      "expected_format": null
+    },
+    "Description": {
+      "semantic_type": "categorical",
+      "expected_dtype": "string",
+      "expected_range": null,
+      "expected_format": "one of: ['GLASS STAR FROSTED T-LIGHT HOLDER', \"POPPY'S PLAYHOUSE BEDROOM\", 'RED WOOLLY HOTTIE WHITE HEART.', 'SET 7 BABUSHKA NESTING BOXES', 'WHITE HANGING HEART T-LIGHT HOLDER', 'assorted colour bird ornament']"
+    },
+    "Quantity": {
+      "semantic_type": "numeric",
+      "expected_dtype": "integer",
+      "expected_range": {
+        "observed_min": -10.0,
+        "observed_max": 49.0,
+        "plausible_lower_bound": -37.5,
+        "plausible_upper_bound": 78.5
+      },
+      "expected_format": null
+    },
+    "InvoiceDate": {
+      "semantic_type": "date",
+      "expected_dtype": "datetime",
+      "expected_range": null,
+      "expected_format": "parseable date/datetime"
+    },
+    "UnitPrice": {
+      "semantic_type": "numeric",
+      "expected_dtype": "float",
+      "expected_range": {
+        "observed_min": -0.97,
+        "observed_max": 49.97,
+        "plausible_lower_bound": -29.165000000000006,
+        "plausible_upper_bound": 77.19500000000001
+      },
+      "expected_format": null
+    },
+    "CustomerID": {
+      "semantic_type": "id",
+      "expected_dtype": "float",
+      "expected_range": {
+        "observed_min": 12027.0,
+        "observed_max": 17980.0,
+        "plausible_lower_bound": 9149.5,
+        "plausible_upper_bound": 21409.5
+      },
+      "expected_format": null
+    },
+    "Country": {
+      "semantic_type": "categorical",
+      "expected_dtype": "string",
+      "expected_range": null,
+      "expected_format": "one of: ['France', 'Germany', 'Spain', 'United Kingdom', 'eire']"
+    },
+    "ContactEmail": {
+      "semantic_type": "email",
+      "expected_dtype": "string",
+      "expected_range": null,
+      "expected_format": "user@domain.tld"
+    },
+    "ContactPhone": {
+      "semantic_type": "phone",
+      "expected_dtype": "string",
+      "expected_range": {
+        "observed_min": 12345.0,
+        "observed_max": 7123456789.0,
+        "plausible_lower_bound": -10685154321.0,
+        "plausible_upper_bound": 17808623455.0
+      },
+      "expected_format": "+<country code> <digits>, 7-15 characters"
+    }
+  },
+  "quality": {
+    "before": {
+      "overall": 89.8,
+      "dimensions": {
+        "completeness": 92.02,
+        "uniqueness": 97.09,
+        "validity": 80.74,
+        "consistency": 92.76
+      },
+      "details": {
+        "missing_cells_by_column": {
+          "Description": 127,
+          "CustomerID": 2,
+          "Country": 73,
+          "ContactEmail": 114,
+          "ContactPhone": 95
+        },
+        "duplicate_rows": 15,
+        "validity_by_column": {
+          "Quantity": 98.06,
+          "InvoiceDate": 100.0,
+          "UnitPrice": 100.0,
+          "ContactEmail": 51.37,
+          "ContactPhone": 54.29
+        },
+        "consistency_by_column": {
+          "Description": 100.0,
+          "Country": 85.52
+        }
+      }
+    },
+    "after": {
+      "overall": 93.08,
+      "dimensions": {
+        "completeness": 95.86,
+        "uniqueness": 100.0,
+        "validity": 81.07,
+        "consistency": 100.0
+      },
+      "details": {
+        "missing_cells_by_column": {
+          "CustomerID": 2,
+          "ContactEmail": 111,
+          "ContactPhone": 94
+        },
+        "duplicate_rows": 0,
+        "validity_by_column": {
+          "Quantity": 100.0,
+          "InvoiceDate": 100.0,
+          "UnitPrice": 100.0,
+          "ContactEmail": 51.16,
+          "ContactPhone": 54.19
+        },
+        "consistency_by_column": {
+          "Description": 100.0,
+          "Country": 100.0
+        }
+      }
+    },
+    "delta": {
+      "overall": 3.28,
+      "completeness": 3.84,
+      "uniqueness": 2.91,
+      "validity": 0.33,
+      "consistency": 7.24
+    }
+  }
+}

@@ -56,3 +56,43 @@ learning a real relationship rather than guessing.
 Cleaning API wrapper (raw dataset in → `cleaned_data.csv` +
 `cleaning_log.json` out), and pytest unit + integration tests — closes
 out Module 2.
+
+## Week 6 — Data-Quality Scoring + Cleaning API + Tests (Module 2 complete)
+**Built:**
+- `quality_scoring.py` — scores a dataset 0-100 on completeness (30%), uniqueness (20%),
+  validity (30%) and consistency (20%); `compare_quality()` scores raw vs cleaned data
+  against one shared schema and reports the delta, so cleaning is measured, not asserted
+- `cleaning_api.py` — Module 2's public entry point: `clean_dataset()` /
+  `clean_dataset_to_files()` take a raw dataset and produce `cleaned_data.csv` +
+  `cleaning_log.json` (log embeds the schema and before/after quality scores); selectable
+  numeric imputation (`statistical`, `knn`, `iterative`)
+- `docs/module2_api.md` — signatures, pipeline order, imputation policy, log schema
+- 26 new tests (unit + integration), 67/67 passing project-wide
+
+**Result on the sample dataset:** overall quality 89.8 -> 93.1 (uniqueness 97.1 -> 100,
+consistency 92.8 -> 100, completeness 92.0 -> 95.9). Validity barely moves (80.7 -> 81.1)
+because malformed emails/phones cannot be repaired by cleaning; Module 3 will flag them.
+
+**Problems found while testing, and fixed:**
+1. *Fabricated data.* Weeks 4-5 filled missing `CustomerID` with a mean and missing
+   emails/phones with the most common value. Identifier and contact columns are now never
+   imputed; they stay missing and appear in the log as `skipped_not_imputable`.
+2. *Mixed-type numeric column never coerced.* `Quantity` (numbers plus stray `"unknown"`)
+   stayed text. Schema inference now recovers such columns as numeric; coercion + imputation
+   then handle them. First attempt only worked on large columns (it relied on distinct-value
+   count) — caught by a unit test on a small DataFrame and made size-independent.
+3. *Codes read as dates.* Module 1's date detector parsed `"07123"` as the year 7123, so a
+   postcode column was classed as dates and rewritten as `7123-01-01`. Bare digit strings
+   are no longer treated as dates. Leading-zero codes are also protected from numeric coercion.
+4. *Missed duplicates.* Rows differing only by whitespace/case (`"  France"` vs `"France"`)
+   are identical only after normalisation; a second duplicate pass now runs after it.
+5. `docs/module1_api.md` was missing from the Week 5 package; restored.
+
+**Known limitations (documented, not hidden):** completeness counts imputed cells as present
+(presence, not truth); mode imputation of categoricals (e.g. Country -> most common) is a
+baseline assumption, logged per column; fuzzy duplicates are reported, not auto-merged.
+
+**Module 2 is complete.** Output: `cleaned_data.csv` + `cleaning_log.json`.
+
+**Next (Week 7):** Module 3 begins — rule-based validation (email/phone/postcode format,
+numeric ranges, categorical consistency) feeding `validation_report.json`.
