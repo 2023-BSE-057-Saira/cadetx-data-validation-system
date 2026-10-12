@@ -1,0 +1,388 @@
+row_index,column,rule,severity,value,message
+1,ContactEmail,email_format,error,not-an-email,invalid email format
+2,ContactEmail,email_format,error,not-an-email,invalid email format
+5,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+6,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+7,ContactEmail,email_format,error,user@@bad.com,invalid email format
+7,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+10,ContactEmail,email_format,error,not-an-email,invalid email format
+12,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+13,ContactEmail,email_format,error,not-an-email,invalid email format
+14,ContactEmail,email_format,error,user@@bad.com,invalid email format
+15,ContactEmail,email_format,error,not-an-email,invalid email format
+15,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+15,UnitPrice,numeric_range,error,-0.53,below minimum 0
+16,ContactEmail,email_format,error,not-an-email,invalid email format
+16,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+17,ContactEmail,email_format,error,not-an-email,invalid email format
+18,ContactEmail,email_format,error,user@@bad.com,invalid email format
+18,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+19,ContactEmail,email_format,error,not-an-email,invalid email format
+20,ContactEmail,email_format,error,user@@bad.com,invalid email format
+21,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+22,ContactEmail,email_format,error,user@@bad.com,invalid email format
+22,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+23,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+24,UnitPrice,numeric_range,error,-0.76,below minimum 0
+26,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+28,ContactEmail,email_format,error,not-an-email,invalid email format
+29,ContactEmail,email_format,error,user@@bad.com,invalid email format
+30,ContactEmail,email_format,error,user@@bad.com,invalid email format
+31,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+34,ContactEmail,email_format,error,not-an-email,invalid email format
+35,ContactEmail,email_format,error,not-an-email,invalid email format
+36,ContactEmail,email_format,error,not-an-email,invalid email format
+36,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+38,ContactEmail,email_format,error,user@@bad.com,invalid email format
+40,ContactEmail,email_format,error,not-an-email,invalid email format
+41,ContactEmail,email_format,error,not-an-email,invalid email format
+42,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+44,ContactEmail,email_format,error,not-an-email,invalid email format
+46,UnitPrice,numeric_range,error,-0.03,below minimum 0
+48,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+50,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+51,ContactEmail,email_format,error,user@@bad.com,invalid email format
+52,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+53,ContactEmail,email_format,error,not-an-email,invalid email format
+55,ContactEmail,email_format,error,not-an-email,invalid email format
+56,ContactEmail,email_format,error,user@@bad.com,invalid email format
+60,UnitPrice,numeric_range,error,-0.8,below minimum 0
+61,UnitPrice,numeric_range,error,-0.15,below minimum 0
+63,ContactEmail,email_format,error,user@@bad.com,invalid email format
+64,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+65,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+66,ContactEmail,email_format,error,user@@bad.com,invalid email format
+67,ContactEmail,email_format,error,user@@bad.com,invalid email format
+67,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+69,ContactEmail,email_format,error,not-an-email,invalid email format
+69,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+71,ContactEmail,email_format,error,not-an-email,invalid email format
+71,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+72,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+75,UnitPrice,numeric_range,error,-0.07,below minimum 0
+79,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+80,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+81,ContactEmail,email_format,error,not-an-email,invalid email format
+81,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+83,ContactEmail,email_format,error,user@@bad.com,invalid email format
+83,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+87,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+89,ContactEmail,email_format,error,not-an-email,invalid email format
+90,UnitPrice,numeric_range,error,-0.36,below minimum 0
+91,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+92,ContactEmail,email_format,error,not-an-email,invalid email format
+92,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+93,ContactEmail,email_format,error,user@@bad.com,invalid email format
+94,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+95,ContactEmail,email_format,error,not-an-email,invalid email format
+95,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+96,ContactEmail,email_format,error,user@@bad.com,invalid email format
+96,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+108,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+109,ContactEmail,email_format,error,user@@bad.com,invalid email format
+110,ContactEmail,email_format,error,not-an-email,invalid email format
+110,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+111,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+112,ContactEmail,email_format,error,user@@bad.com,invalid email format
+114,ContactEmail,email_format,error,not-an-email,invalid email format
+116,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+117,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+118,ContactEmail,email_format,error,user@@bad.com,invalid email format
+118,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+121,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+122,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+124,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+126,ContactEmail,email_format,error,not-an-email,invalid email format
+126,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+127,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+128,ContactEmail,email_format,error,user@@bad.com,invalid email format
+129,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+131,ContactEmail,email_format,error,not-an-email,invalid email format
+132,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+133,ContactEmail,email_format,error,user@@bad.com,invalid email format
+133,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+134,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+135,ContactEmail,email_format,error,user@@bad.com,invalid email format
+135,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+139,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+141,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+142,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+143,ContactEmail,email_format,error,not-an-email,invalid email format
+145,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+146,ContactEmail,email_format,error,user@@bad.com,invalid email format
+147,ContactEmail,email_format,error,not-an-email,invalid email format
+148,ContactEmail,email_format,error,user@@bad.com,invalid email format
+149,ContactEmail,email_format,error,not-an-email,invalid email format
+150,ContactEmail,email_format,error,user@@bad.com,invalid email format
+151,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+152,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+153,ContactEmail,email_format,error,not-an-email,invalid email format
+153,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+154,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+155,ContactEmail,email_format,error,user@@bad.com,invalid email format
+155,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+156,ContactEmail,email_format,error,not-an-email,invalid email format
+156,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+158,ContactEmail,email_format,error,not-an-email,invalid email format
+159,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+161,ContactEmail,email_format,error,user@@bad.com,invalid email format
+162,ContactEmail,email_format,error,not-an-email,invalid email format
+162,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+163,ContactEmail,email_format,error,user@@bad.com,invalid email format
+163,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+164,ContactEmail,email_format,error,user@@bad.com,invalid email format
+164,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+165,ContactEmail,email_format,error,user@@bad.com,invalid email format
+165,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+168,ContactEmail,email_format,error,not-an-email,invalid email format
+168,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+169,ContactEmail,email_format,error,user@@bad.com,invalid email format
+169,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+170,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+173,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+174,ContactEmail,email_format,error,user@@bad.com,invalid email format
+175,ContactEmail,email_format,error,user@@bad.com,invalid email format
+175,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+176,ContactEmail,email_format,error,user@@bad.com,invalid email format
+177,ContactEmail,email_format,error,not-an-email,invalid email format
+179,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+180,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+181,ContactEmail,email_format,error,not-an-email,invalid email format
+183,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+189,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+191,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+193,ContactEmail,email_format,error,not-an-email,invalid email format
+194,ContactEmail,email_format,error,user@@bad.com,invalid email format
+194,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+195,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+198,ContactEmail,email_format,error,not-an-email,invalid email format
+203,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+205,ContactEmail,email_format,error,user@@bad.com,invalid email format
+205,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+206,ContactEmail,email_format,error,user@@bad.com,invalid email format
+210,ContactEmail,email_format,error,not-an-email,invalid email format
+211,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+214,ContactEmail,email_format,error,user@@bad.com,invalid email format
+214,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+215,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+216,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+219,ContactEmail,email_format,error,user@@bad.com,invalid email format
+221,ContactEmail,email_format,error,user@@bad.com,invalid email format
+221,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+223,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+224,ContactEmail,email_format,error,user@@bad.com,invalid email format
+225,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+227,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+228,ContactEmail,email_format,error,user@@bad.com,invalid email format
+229,ContactEmail,email_format,error,user@@bad.com,invalid email format
+229,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+230,ContactEmail,email_format,error,user@@bad.com,invalid email format
+230,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+232,ContactEmail,email_format,error,user@@bad.com,invalid email format
+232,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+233,ContactEmail,email_format,error,user@@bad.com,invalid email format
+234,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+235,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+237,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+238,ContactEmail,email_format,error,user@@bad.com,invalid email format
+241,ContactEmail,email_format,error,not-an-email,invalid email format
+243,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+245,ContactEmail,email_format,error,user@@bad.com,invalid email format
+245,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+247,ContactEmail,email_format,error,not-an-email,invalid email format
+247,UnitPrice,numeric_range,error,-0.88,below minimum 0
+248,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+249,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+250,ContactEmail,email_format,error,not-an-email,invalid email format
+250,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+251,ContactEmail,email_format,error,not-an-email,invalid email format
+252,ContactEmail,email_format,error,user@@bad.com,invalid email format
+252,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+256,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+257,ContactEmail,email_format,error,user@@bad.com,invalid email format
+259,ContactEmail,email_format,error,not-an-email,invalid email format
+262,ContactEmail,email_format,error,user@@bad.com,invalid email format
+262,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+263,ContactEmail,email_format,error,not-an-email,invalid email format
+264,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+266,ContactEmail,email_format,error,user@@bad.com,invalid email format
+267,ContactEmail,email_format,error,not-an-email,invalid email format
+267,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+268,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+269,ContactEmail,email_format,error,user@@bad.com,invalid email format
+270,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+271,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+272,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+273,ContactEmail,email_format,error,not-an-email,invalid email format
+274,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+275,ContactEmail,email_format,error,user@@bad.com,invalid email format
+276,ContactEmail,email_format,error,user@@bad.com,invalid email format
+276,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+278,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+279,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+280,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+282,ContactEmail,email_format,error,user@@bad.com,invalid email format
+282,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+283,ContactEmail,email_format,error,user@@bad.com,invalid email format
+284,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+285,ContactEmail,email_format,error,not-an-email,invalid email format
+286,ContactEmail,email_format,error,not-an-email,invalid email format
+286,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+290,ContactEmail,email_format,error,user@@bad.com,invalid email format
+291,ContactEmail,email_format,error,user@@bad.com,invalid email format
+293,ContactEmail,email_format,error,not-an-email,invalid email format
+295,ContactEmail,email_format,error,not-an-email,invalid email format
+298,ContactEmail,email_format,error,user@@bad.com,invalid email format
+300,ContactEmail,email_format,error,not-an-email,invalid email format
+301,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+302,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+306,ContactEmail,email_format,error,not-an-email,invalid email format
+307,ContactEmail,email_format,error,user@@bad.com,invalid email format
+307,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+309,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+310,ContactEmail,email_format,error,not-an-email,invalid email format
+311,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+312,ContactEmail,email_format,error,user@@bad.com,invalid email format
+313,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+314,ContactEmail,email_format,error,not-an-email,invalid email format
+314,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+316,ContactEmail,email_format,error,not-an-email,invalid email format
+319,ContactEmail,email_format,error,user@@bad.com,invalid email format
+319,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+320,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+322,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+323,ContactEmail,email_format,error,not-an-email,invalid email format
+323,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+324,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+325,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+326,ContactEmail,email_format,error,not-an-email,invalid email format
+328,ContactEmail,email_format,error,user@@bad.com,invalid email format
+328,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+329,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+332,ContactEmail,email_format,error,not-an-email,invalid email format
+333,ContactEmail,email_format,error,not-an-email,invalid email format
+335,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+336,ContactEmail,email_format,error,user@@bad.com,invalid email format
+337,ContactEmail,email_format,error,user@@bad.com,invalid email format
+338,ContactEmail,email_format,error,not-an-email,invalid email format
+338,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+339,ContactEmail,email_format,error,not-an-email,invalid email format
+339,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+340,ContactEmail,email_format,error,not-an-email,invalid email format
+340,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+341,ContactEmail,email_format,error,user@@bad.com,invalid email format
+342,ContactEmail,email_format,error,user@@bad.com,invalid email format
+342,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+344,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+346,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+347,ContactEmail,email_format,error,not-an-email,invalid email format
+347,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+348,ContactEmail,email_format,error,not-an-email,invalid email format
+348,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+349,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+350,ContactEmail,email_format,error,not-an-email,invalid email format
+350,UnitPrice,numeric_range,error,-0.62,below minimum 0
+351,ContactEmail,email_format,error,not-an-email,invalid email format
+352,ContactEmail,email_format,error,user@@bad.com,invalid email format
+353,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+355,ContactEmail,email_format,error,not-an-email,invalid email format
+357,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+358,ContactEmail,email_format,error,not-an-email,invalid email format
+360,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+361,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+362,ContactEmail,email_format,error,user@@bad.com,invalid email format
+364,ContactEmail,email_format,error,user@@bad.com,invalid email format
+364,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+365,ContactEmail,email_format,error,not-an-email,invalid email format
+368,ContactEmail,email_format,error,user@@bad.com,invalid email format
+371,ContactEmail,email_format,error,user@@bad.com,invalid email format
+372,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+373,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+374,ContactEmail,email_format,error,not-an-email,invalid email format
+377,ContactEmail,email_format,error,user@@bad.com,invalid email format
+378,ContactEmail,email_format,error,not-an-email,invalid email format
+379,ContactEmail,email_format,error,user@@bad.com,invalid email format
+381,ContactEmail,email_format,error,not-an-email,invalid email format
+381,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+382,ContactEmail,email_format,error,user@@bad.com,invalid email format
+383,ContactEmail,email_format,error,user@@bad.com,invalid email format
+384,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+385,ContactEmail,email_format,error,user@@bad.com,invalid email format
+386,ContactEmail,email_format,error,not-an-email,invalid email format
+390,ContactEmail,email_format,error,user@@bad.com,invalid email format
+392,ContactEmail,email_format,error,not-an-email,invalid email format
+396,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+398,ContactEmail,email_format,error,user@@bad.com,invalid email format
+398,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+399,ContactEmail,email_format,error,not-an-email,invalid email format
+400,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+401,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+405,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+407,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+407,UnitPrice,numeric_range,error,-0.97,below minimum 0
+408,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+409,ContactEmail,email_format,error,not-an-email,invalid email format
+409,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+413,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+414,ContactEmail,email_format,error,not-an-email,invalid email format
+414,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+415,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+417,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+418,ContactEmail,email_format,error,not-an-email,invalid email format
+419,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+420,ContactEmail,email_format,error,user@@bad.com,invalid email format
+421,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+422,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+423,ContactEmail,email_format,error,not-an-email,invalid email format
+424,ContactEmail,email_format,error,user@@bad.com,invalid email format
+432,ContactEmail,email_format,error,user@@bad.com,invalid email format
+436,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+437,ContactEmail,email_format,error,not-an-email,invalid email format
+437,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+439,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+440,ContactEmail,email_format,error,user@@bad.com,invalid email format
+440,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+442,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+445,ContactEmail,email_format,error,not-an-email,invalid email format
+445,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+449,ContactEmail,email_format,error,not-an-email,invalid email format
+450,ContactEmail,email_format,error,not-an-email,invalid email format
+451,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+454,ContactEmail,email_format,error,not-an-email,invalid email format
+456,ContactEmail,email_format,error,user@@bad.com,invalid email format
+457,ContactEmail,email_format,error,not-an-email,invalid email format
+457,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+458,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+459,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+460,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+461,ContactEmail,email_format,error,not-an-email,invalid email format
+461,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+463,ContactEmail,email_format,error,not-an-email,invalid email format
+464,ContactEmail,email_format,error,user@@bad.com,invalid email format
+465,ContactEmail,email_format,error,user@@bad.com,invalid email format
+465,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+469,ContactEmail,email_format,error,user@@bad.com,invalid email format
+469,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+470,ContactEmail,email_format,error,not-an-email,invalid email format
+470,UnitPrice,numeric_range,error,-0.95,below minimum 0
+471,ContactEmail,email_format,error,not-an-email,invalid email format
+473,ContactEmail,email_format,error,not-an-email,invalid email format
+473,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+474,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+475,ContactEmail,email_format,error,not-an-email,invalid email format
+476,ContactEmail,email_format,error,not-an-email,invalid email format
+476,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+477,ContactEmail,email_format,error,user@@bad.com,invalid email format
+477,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+480,ContactEmail,email_format,error,user@@bad.com,invalid email format
+481,ContactEmail,email_format,error,not-an-email,invalid email format
+484,ContactPhone,phone_format,error,not-a-phone,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+486,ContactEmail,email_format,error,not-an-email,invalid email format
+486,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+487,ContactEmail,email_format,error,not-an-email,invalid email format
+491,ContactEmail,email_format,error,not-an-email,invalid email format
+492,ContactEmail,email_format,error,user@@bad.com,invalid email format
+492,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+493,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+495,ContactPhone,phone_format,error,12345,"invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+499,ContactEmail,email_format,error,not-an-email,invalid email format

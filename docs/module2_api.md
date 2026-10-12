@@ -45,6 +45,10 @@ create or hide duplicates.
 A mean `CustomerID` or a most-common email would be invented data that looks
 real. Missing identifiers are surfaced in the log, not hidden.
 
+**Text identifiers stay text.** Columns such as `InvoiceNo` (`C536379` for cancellations) and
+`StockCode` (`85123A`) are labels, not numbers; they are never coerced to numeric, so no value
+containing a letter is lost.
+
 A text column that is mostly numeric with a few stray words (`"38"`, `"12"`,
 `"unknown"`) is recovered as numeric and coerced. Code-like values with
 leading zeros (`"07123"`) and fully-numeric text columns are left alone.

@@ -40,7 +40,12 @@ def infer_expected_type(series, col_name):
         return {"semantic_type": semantic, "expected_dtype": expected_dtype}
 
     if semantic in ("numeric", "id"):
-        expected_dtype = "integer" if pd.api.types.is_integer_dtype(series.dropna()) else "float"
+        if not pd.api.types.is_numeric_dtype(series):
+            # A TEXT identifier ('C536379', '85123A') is a label, not a number:
+            # coercing it would blank every value containing a letter.
+            expected_dtype = "string"
+        else:
+            expected_dtype = "integer" if pd.api.types.is_integer_dtype(series.dropna()) else "float"
     elif semantic == "date":
         expected_dtype = "datetime"
     else:

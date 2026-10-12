@@ -96,3 +96,46 @@ baseline assumption, logged per column; fuzzy duplicates are reported, not auto-
 
 **Next (Week 7):** Module 3 begins — rule-based validation (email/phone/postcode format,
 numeric ranges, categorical consistency) feeding `validation_report.json`.
+
+## Week 7 — Rule-Based Validation (Module 3 begins)
+**Built:**
+- `rule_validation.py` — 12 independent, explainable rules: required fields, email / phone /
+  postcode format, numeric validity, numeric range, date plausibility, categorical
+  case/whitespace consistency, near-duplicate (typo) categories, placeholder values,
+  allowed values, regex patterns. Each violation records row, column, rule, severity
+  (error / warning), the offending value and a message.
+- Per-dataset **config** (ranges, patterns, allowed values, required columns, postcode
+  countries, date bounds). Unknown keys, bad regexes and unsupported countries raise a clear
+  error; config naming a missing column becomes a warning, not a crash.
+- Rules report `not_applicable` (with a reason) when a dataset has no matching column, rather
+  than passing vacuously.
+- Outputs `rule_validation_report.json` (summary, per-rule counts, examples, per-column
+  breakdown) and `rule_violations.csv` (one row per violation).
+- `configs/retail_validation.json`, `docs/module3_api.md`; 33 new tests, 100/100 passing.
+
+**Result on the cleaned sample data:** 387 violations in 310 of 500 rows — 190 invalid emails,
+186 invalid phones, 11 negative prices. None of these can be repaired by cleaning, which is
+exactly why validation reports them instead. On a 60,000-row UCI-shaped file validation took
+0.24s (about 2s extrapolated to the full 541k rows) and found exactly the 15 problems planted.
+
+**Design decisions:** cleaning fixes what is safely fixable, validation reports the rest and
+never guesses; negative quantities are not flagged by default (returns are legitimate in
+retail) while negative prices are; statistical outliers are left to Week 8 rather than
+approximated with rules.
+
+**Serious bug found by testing on UCI-shaped data, and fixed:** Module 2 coerced *text*
+identifiers to numbers, silently turning every cancellation invoice (`C536379`) and every
+letter-suffixed stock code (`85123A`) into a blank — 1,257 invoices and 18,006 stock codes in
+the test file (about 2% and 30%). Text identifiers now stay text, with a regression test. The
+500-row sample could never have shown this: it only has numeric IDs.
+
+**Limitations (honest):** the real UCI file could not be downloaded in my environment, so
+everything was tested on the sample and on synthetic UCI-shaped data, not the real file. UCI
+Online Retail has no email, phone or postcode columns, so those rules report `not_applicable`
+there; the retail config (InvoiceNo pattern, price/quantity ranges) is what applies to it, and
+its bounds should be checked against the real data. `pandas.read_csv` turns `n/a`/`NA`/`null`
+into missing values on load, so `placeholder_value` catches only the placeholders pandas does
+not recognise (`unknown`, `?`, `-`, `tbd`).
+
+**Next (Week 8):** AI anomaly detection (Isolation Forest, Local Outlier Factor; autoencoder
+optional) and the NLP column classifier (classify column meaning, detect mislabeled columns).

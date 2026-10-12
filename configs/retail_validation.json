@@ -1,0 +1,10 @@
+{
+  "ranges": {
+    "UnitPrice": {"min": 0, "severity": "error"},
+    "Quantity": {"min": -100000, "max": 100000, "severity": "warning"}
+  },
+  "patterns": {
+    "InvoiceNo": "^C?\\d{6}$"
+  },
+  "max_examples_per_rule": 10
+}

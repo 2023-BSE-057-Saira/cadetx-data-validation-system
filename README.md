@@ -24,13 +24,15 @@ modules/
     transformation_engine.py Week 5: scaling, encoding, feature extraction
     quality_scoring.py       Week 6: 4-dimension quality score, before/after/delta
     cleaning_api.py          Week 6: public entry point (clean_dataset / clean_dataset_to_files)
-  module3_validation/   → validation_report.json (not started)
+  module3_validation/   → validation_report.json (in progress)
+    rule_validation.py       Week 7: 12 explainable validation rules + per-dataset config
   module4_automation/   → end-to-end CLI pipeline (not started)
 data/
   raw/                  → input datasets
   processed/            → pipeline outputs + visualisations
-tests/                  → 67 pytest unit + integration tests, all passing
-docs/                   → module1_api.md, module2_api.md (schemas, signatures, integration guides)
+tests/                  → 100 pytest unit + integration tests, all passing
+docs/                   → module1/2/3_api.md (schemas, signatures, integration guides)
+configs/                → retail_validation.json (example validation config)
 ```
 
 ## Status
@@ -41,7 +43,8 @@ docs/                   → module1_api.md, module2_api.md (schemas, signatures,
 - [x] Week 4: Schema inference + cleaning pipeline basics
 - [x] Week 5: ML-based imputation + transformation engine
 - [x] Week 6: Data-quality scoring + cleaning API + tests — **Module 2 complete**
-- [ ] Week 7: Rule-based validation (Module 3 begins)
+- [x] Week 7: Rule-based validation (Module 3 begins)
+- [ ] Week 8: AI anomaly detection + NLP column classifier
 
 ## Setup
 ```
@@ -50,7 +53,8 @@ python3 modules/module1_profiling/api.py data/raw/sample_retail.csv
 python3 modules/module2_cleaning/cleaning_api.py data/raw/sample_retail.csv   # writes cleaned_data.csv + cleaning_log.json
 python3 modules/module2_cleaning/ml_imputation.py data/raw/sample_retail.csv
 python3 modules/module2_cleaning/transformation_engine.py data/raw/sample_retail.csv
+python3 modules/module3_validation/rule_validation.py --config configs/retail_validation.json
 python3 -m pytest tests/ -v
 ```
 
-See `docs/module1_api.md` and `docs/module2_api.md` for the API references and JSON schemas.
+See `docs/module1_api.md`, `docs/module2_api.md` and `docs/module3_api.md` for the API references and JSON schemas.

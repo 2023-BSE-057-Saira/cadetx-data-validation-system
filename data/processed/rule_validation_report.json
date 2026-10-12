@@ -1,0 +1,542 @@
+{
+  "summary": {
+    "rows_checked": 500,
+    "columns_checked": 10,
+    "rules_applied": 8,
+    "rules_not_applicable": 4,
+    "total_violations": 387,
+    "errors": 387,
+    "warnings": 0,
+    "rows_with_violations": 310,
+    "rows_with_violations_percent": 62.0,
+    "rows_with_errors": 310,
+    "rows_with_errors_percent": 62.0
+  },
+  "rules": [
+    {
+      "rule": "required_fields",
+      "description": "Configured columns must not be missing",
+      "status": "not_applicable",
+      "columns": [],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0,
+      "reason": "no required columns configured"
+    },
+    {
+      "rule": "email_format",
+      "description": "Email addresses must be syntactically valid",
+      "status": "applied",
+      "columns": [
+        "ContactEmail"
+      ],
+      "violations": 190,
+      "errors": 190,
+      "warnings": 0,
+      "examples": [
+        {
+          "row_index": 1,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 2,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 7,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 10,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 13,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 14,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 15,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 16,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 17,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 18,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 19,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 20,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 22,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 28,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 29,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 30,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 34,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 35,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 36,
+          "column": "ContactEmail",
+          "value": "not-an-email",
+          "severity": "error",
+          "message": "invalid email format"
+        },
+        {
+          "row_index": 38,
+          "column": "ContactEmail",
+          "value": "user@@bad.com",
+          "severity": "error",
+          "message": "invalid email format"
+        }
+      ]
+    },
+    {
+      "rule": "phone_format",
+      "description": "Phone numbers must have 7-15 digits and only valid characters",
+      "status": "applied",
+      "columns": [
+        "ContactPhone"
+      ],
+      "violations": 186,
+      "errors": 186,
+      "warnings": 0,
+      "examples": [
+        {
+          "row_index": 5,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 6,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 7,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 12,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 15,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 16,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 18,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 21,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 22,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 23,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 26,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 31,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 36,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 42,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 48,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 50,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 52,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 64,
+          "column": "ContactPhone",
+          "value": "not-a-phone",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 65,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        },
+        {
+          "row_index": 67,
+          "column": "ContactPhone",
+          "value": "12345",
+          "severity": "error",
+          "message": "invalid phone number (needs 7-15 digits, only digits and + ( ) . - space)"
+        }
+      ]
+    },
+    {
+      "rule": "postcode_format",
+      "description": "Postcodes must match a configured country format",
+      "status": "not_applicable",
+      "columns": [],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0,
+      "reason": "no postcode column found"
+    },
+    {
+      "rule": "numeric_validity",
+      "description": "Numeric columns must contain finite numbers",
+      "status": "applied",
+      "columns": [
+        "Quantity",
+        "UnitPrice"
+      ],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "rule": "numeric_range",
+      "description": "Numeric values must be within configured bounds; prices must not be negative",
+      "status": "applied",
+      "columns": [
+        "UnitPrice"
+      ],
+      "violations": 11,
+      "errors": 11,
+      "warnings": 0,
+      "examples": [
+        {
+          "row_index": 15,
+          "column": "UnitPrice",
+          "value": "-0.53",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 24,
+          "column": "UnitPrice",
+          "value": "-0.76",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 46,
+          "column": "UnitPrice",
+          "value": "-0.03",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 60,
+          "column": "UnitPrice",
+          "value": "-0.8",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 61,
+          "column": "UnitPrice",
+          "value": "-0.15",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 75,
+          "column": "UnitPrice",
+          "value": "-0.07",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 90,
+          "column": "UnitPrice",
+          "value": "-0.36",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 247,
+          "column": "UnitPrice",
+          "value": "-0.88",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 350,
+          "column": "UnitPrice",
+          "value": "-0.62",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 407,
+          "column": "UnitPrice",
+          "value": "-0.97",
+          "severity": "error",
+          "message": "below minimum 0"
+        },
+        {
+          "row_index": 470,
+          "column": "UnitPrice",
+          "value": "-0.95",
+          "severity": "error",
+          "message": "below minimum 0"
+        }
+      ]
+    },
+    {
+      "rule": "date_plausibility",
+      "description": "Dates must parse, not be in the future, and not precede min_date",
+      "status": "applied",
+      "columns": [
+        "InvoiceDate"
+      ],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "rule": "categorical_case_whitespace",
+      "description": "Categorical values must use one consistent casing/whitespace form",
+      "status": "applied",
+      "columns": [
+        "Description",
+        "Country"
+      ],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "rule": "categorical_near_duplicate",
+      "description": "Rare categorical values that look like typos of common ones",
+      "status": "applied",
+      "columns": [
+        "Description",
+        "Country"
+      ],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "rule": "placeholder_value",
+      "description": "Disguised missing values such as 'n/a' or 'unknown'",
+      "status": "applied",
+      "columns": [
+        "Description",
+        "InvoiceDate",
+        "Country",
+        "ContactEmail",
+        "ContactPhone"
+      ],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "rule": "allowed_values",
+      "description": "Values must belong to the configured allowed list",
+      "status": "not_applicable",
+      "columns": [],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0,
+      "reason": "no allowed_values configured"
+    },
+    {
+      "rule": "pattern_match",
+      "description": "Values must fully match the configured regex",
+      "status": "not_applicable",
+      "columns": [],
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0,
+      "reason": "no patterns configured"
+    }
+  ],
+  "violations_by_column": {
+    "ContactEmail": {
+      "email_format": 190
+    },
+    "ContactPhone": {
+      "phone_format": 186
+    },
+    "UnitPrice": {
+      "numeric_range": 11
+    }
+  },
+  "config_warnings": [],
+  "config_used": {
+    "required": [],
+    "ranges": {},
+    "patterns": {},
+    "allowed_values": {},
+    "postcode_countries": [
+      "UK",
+      "US"
+    ],
+    "near_duplicate_threshold": 90,
+    "near_duplicate_rare_ratio": 0.1,
+    "as_of": null,
+    "min_date": "1900-01-01",
+    "max_examples_per_rule": 20
+  }
+}

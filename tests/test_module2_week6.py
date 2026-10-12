@@ -196,3 +196,19 @@ def test_code_like_text_columns_are_not_coerced_to_numeric():
 def test_fully_numeric_text_column_is_left_alone():
     df = pd.DataFrame({"Level": ["1", "2", "3", "1", "2", "3", "1", "2"]})
     assert build_schema(df)["Level"]["semantic_type"] != "numeric"
+
+
+def test_text_identifiers_with_letters_are_never_blanked():
+    """Regression (found with UCI-shaped data): 'C536379' cancellation invoices and
+    '85123A' stock codes were coerced to numbers and silently turned into NaN."""
+    df = pd.DataFrame({
+        "InvoiceNo": ["536365", "536366", "C536379", "536367", "C536380", "536368"],
+        "StockCode": ["85123A", "71053", "84406B", "22752", "85123A", "22633"],
+        "Quantity": [6, 8, -1, 2, -3, 4],
+    })
+    spec = build_schema(df)
+    assert spec["InvoiceNo"]["expected_dtype"] == "string"
+    assert spec["StockCode"]["expected_dtype"] == "string"
+    cleaned = run_cleaning_pipeline(df)["cleaned_df"]
+    assert cleaned["InvoiceNo"].tolist() == df["InvoiceNo"].tolist()
+    assert cleaned["StockCode"].tolist() == df["StockCode"].tolist()
